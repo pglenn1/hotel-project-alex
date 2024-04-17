@@ -12,3 +12,6 @@ body {
 #insertInfoBtn {
     margin-bottom: 10000px; /* Adjust the value as needed */
 }
+.container {
+    padding-bottom: 80px; /* Adjust the value as needed to create space for the footer */
+}
