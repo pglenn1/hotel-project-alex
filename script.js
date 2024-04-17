@@ -1,22 +1,21 @@
 $(document).ready(function() {
-  // Fetch JSON data
-  $.ajax({
-    url: 'data.json',
-    dataType: 'json',
-    success: function(data) {
-      // Display fetched data
-      $('#userData').html(`
-        <p>Name: ${data.name}</p>
-        <p>Email: ${data.email}</p>
-        <p>Phone: ${data.phone}</p>
-        <p>Bike Brand: ${data.brand}</p>
-        <p>Class: ${data.class}</p>
-      `);
-    },
-    error: function(xhr, status, error) {
-      console.error(status, error);
-      $('#userData').text('Error fetching data');
-    }
+  // Function to populate form fields with JSON data
+  function populateForm(data) {
+    $('#name').val(data.name);
+    $('#email').val(data.email);
+    $('#phoneNumber').val(data.phone);
+    $('#bikeBrand').val(data.brand);
+    // Assuming "class" is the skill level
+    $(`input[name='skill'][value='${data.class}']`).prop('checked', true);
+  }
+
+  // Fetch JSON data and populate form on button click
+  $('#populateButton').click(function() {
+    $.getJSON('data.json', function(data) {
+      populateForm(data);
+    }).fail(function() {
+      console.error('Failed to fetch JSON data');
+    });
   });
 
   // Registration form submission
