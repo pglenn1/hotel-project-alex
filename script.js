@@ -11,11 +11,13 @@ $(document).ready(function() {
 
   // Fetch JSON data and populate form on button click
   $('#populateButton').click(function() {
-    $.getJSON('data.json', function(data) {
-      populateForm(data);
-    }).fail(function() {
-      console.error('Failed to fetch JSON data');
-    });
+    $.getJSON('data.json')
+      .done(function(data) {
+        populateForm(data);
+      })
+      .fail(function(jqXHR, textStatus, errorThrown) {
+        console.error('Failed to fetch JSON data:', textStatus, errorThrown);
+      });
   });
 
   // Registration form submission
