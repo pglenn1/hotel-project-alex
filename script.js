@@ -1,26 +1,15 @@
 $(document).ready(function() {
-  // Function to populate form fields with JSON data
-  function populateForm(data) {
-    $('#name').val(data.name);
-    $('#email').val(data.email);
-    $('#phoneNumber').val(data.phone);
-    $('#bikeBrand').val(data.brand);
-    // Assuming "class" is the skill level
-    $(`input[name='skill'][value='${data.class}']`).prop('checked', true);
-  }
-
-  // Fetch JSON data and populate form on button click
-  $('#populateButton').click(function() {
-    $.getJSON('data.json')
-      .done(function(data) {
-        populateForm(data);
-      })
-      .fail(function(jqXHR, textStatus, errorThrown) {
-        console.error('Failed to fetch JSON data:', textStatus, errorThrown);
-      });
+  // Button click event handler to insert info
+  $("#insertInfoBtn").on("click", function() {
+    // Set values for form fields
+    $('#name').val('Alex');
+    $('#email').val('pglenn1@una.edu');
+    $('#phoneNumber').val('256-789-1234');
+    $('#bikeBrand').val('Yamaha');
+    $('input[name="skill"][value="C class"]').prop('checked', true); // Assuming 'C-Class' corresponds to 'C class' in your radio button options
   });
 
-  // Registration form submission
+  // Form submission handling
   $('#registrationForm').submit(function(event) {
     event.preventDefault(); // Prevent default form submission
 
